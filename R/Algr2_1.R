@@ -1,4 +1,18 @@
-
+#'general_CG
+#'
+#'@param A input matrixes
+#'
+#'@param B input matrixes
+#'
+#'
+#'@return solve of matrix function
+#'
+#'@examples
+#'general_GC
+#'
+#'@export
+#'
+#'
 A11 <- matrix(runif(12),3,4)
 A12 <- matrix(runif(6),3,2)
 A13 <- matrix(runif(15),3,5)
@@ -50,9 +64,9 @@ general_CG = function(A,B,C,tol= 1e-20,max.iter = 10000){
     prepare[[i]] <-crossprod(A[[i]],save_sum[[group_X]]%*%t(B[[i]]))
     p[[mod_X]] <- p[[mod_X]] + prepare[[i]]
   }
-  
+
   ## Step 5
-  
+
   new_X <- zeros_X
   for (iter in 1:max.iter){
     for (i in 1:length_X){
@@ -70,7 +84,7 @@ general_CG = function(A,B,C,tol= 1e-20,max.iter = 10000){
       p[[i]] <- sum(new_R^2)/sum(R1^2)*p[[i]]
     }
     prepare <- rep(zeros_X,length_X)
-    
+
     for (i in 1:length_A){
       group_X <- (i-1)%/%length_X+1
       mod_X <- (i-1)%%length_X+1
@@ -82,7 +96,7 @@ general_CG = function(A,B,C,tol= 1e-20,max.iter = 10000){
     }
     X <- new_X
     save_sum <- new_save_sum
-    R1 <- new_R 
+    R1 <- new_R
   }
   return(X)
 }
