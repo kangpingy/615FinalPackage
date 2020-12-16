@@ -13,6 +13,7 @@
 #'@export
 #'
 #'
+library(maotai)
 A11 <- matrix(runif(12),3,4)
 A12 <- matrix(runif(6),3,2)
 A13 <- matrix(runif(15),3,5)
@@ -102,7 +103,6 @@ general_CG = function(A,B,C,tol= 1e-20,max.iter = 10000){
 }
 ## Return Result
 X
-iter
 ## Verification
 A11%*%X[[1]]%*%B11 + A12%*%X[[2]]%*%B12 + A13%*%X[[3]]%*%B13
 C1
@@ -111,5 +111,5 @@ C2
 A31%*%X[[1]]%*%B31 + A32%*%X[[2]]%*%B32 + A33%*%X[[3]]%*%B33
 C3
 
-library("microbenchmark")
-microbenchmark(general_CG(A,B,C,max.iter = 100000),sylvester(A,B,C))
+#library("microbenchmark")
+#microbenchmark(general_CG(A,B,C,max.iter = 100000),sylvester(A,B,C))
